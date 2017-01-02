@@ -13,7 +13,7 @@
 $(document).ready(function(){
 
 	function init(){
-		$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ $("#term").val(), 
+		$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ $("#term").val()+'?callback=non', 
 		function(json) {
 		     appenData(json);
 		});
