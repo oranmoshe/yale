@@ -18,7 +18,11 @@ def getIconByTerm(term,height):
     if(response.status_code==200):
         response = (response.content).decode("utf-8");
         js = json.loads(response)
-        return js['icon_url']
+        if(height=="200"):
+            height = ""
+        else:
+            height = "_"+height
+        return js['icon']['preview_url'+height+'']
     
 def getQuot():
     response = get('http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en')
