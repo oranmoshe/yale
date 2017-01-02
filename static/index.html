@@ -22,10 +22,10 @@ $(document).ready(function(){
 		});
 		
 		function appenData(obj){
-			$("#icon").append('<img src=\"' + obj.icon +'\">');
-			$("#image_credit").append(obj.image_credit);
-			$("#image_url").append('<img src=\"' + obj.image_url +'\">');
-			$("#quot").append(obj.quot);
+			$("#icon").html('<img src=\"' + obj.icon +'\">');
+			$("#image_credit").html(obj.image_credit);
+			$("#image_url").html('<img src=\"' + obj.image_url +'\">');
+			$("#quot").html(obj.quot);
 		}
 	});
 
