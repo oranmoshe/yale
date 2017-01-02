@@ -53,10 +53,10 @@ def api_hello(query):
 
     return resp
 
-@app.route('pages/<path:file>', defaults={'file': 'pages/index.html'})
-def serve_results(file):
+@app.route('/')
+def serve_results():
     # Haven't used the secure way to send files yet
-    return send_from_directory(app.config['RESULT_STATIC_PATH'], file)
+    return send_from_directory(app.config['RESULT_STATIC_PATH'], "pages/index.html")
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
