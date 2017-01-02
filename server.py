@@ -1,6 +1,6 @@
 from flask import Flask, url_for, json,Response
 
-
+from flask.ext.cors import CORS, cross_origin
 import requests,os
 from requests_oauthlib import OAuth1
 from requests import get
@@ -8,6 +8,8 @@ from json import loads
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # height:{200,42,84}
 def getIconByTerm(term,height):
@@ -43,6 +45,7 @@ def getRandomImage(query,size):
         return data
     
 @app.route('/product/<query>', methods = ['GET'])
+@cross_origin()
 def api_hello(query):
     data = {}
     data["icon"] = getIconByTerm(query,"200")
