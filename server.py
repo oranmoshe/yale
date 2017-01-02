@@ -1,9 +1,13 @@
 from flask import Flask, url_for, json,Response
-app = Flask(__name__)
+
+
 import requests,os
 from requests_oauthlib import OAuth1
 from requests import get
 from json import loads
+
+tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+app = Flask(__name__, template_folder=tmpl_dir)
 
 # height:{200,42,84}
 def getIconByTerm(term,height):
@@ -53,10 +57,11 @@ def api_hello(query):
 
     return resp
 
+
 @app.route('/')
-def serve_results():
-    # Haven't used the secure way to send files yet
-    return send_from_directory(app.config['pages'], "index.html")
+def root():
+    return app.send_static_file('index.html')
+
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
