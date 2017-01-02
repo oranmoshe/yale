@@ -58,9 +58,9 @@ def api_hello(query):
     return resp
 
 
-@app.route('/')
+@app.route('/<query>')
 def root():
-    return app.send_static_file('index.html')
+    return app.send_static_file('index.html?term='+query)
 
 
 if __name__ == '__main__':
