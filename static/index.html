@@ -18,10 +18,10 @@ $(document).ready(function(){
 	});
 	
 	function appenData(obj){
-		$("#icon").append(obj.icon);
-		$("#image_credit").append(obj.icon);
-		$("#image_url").append(obj.icon);
-		$("#quot").append(obj.icon);
+		$("#icon").append('<img src=\"' + obj.icon +'\">');
+		$("#image_credit").append(obj.image_credit);
+		$("#image_url").append('<img src=\"' + obj.image_url +'\">');
+		$("#quot").append(obj.quot);
 	}
 
 });
