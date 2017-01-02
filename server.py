@@ -53,7 +53,7 @@ def api_hello(query):
 
     return resp
 
-@app.route('pages/<path:file>', defaults={'file': 'index.html'})
+@app.route('pages/<path:file>', defaults={'file': 'pages/index.html'})
 def serve_results(file):
     # Haven't used the secure way to send files yet
     return send_from_directory(app.config['RESULT_STATIC_PATH'], file)

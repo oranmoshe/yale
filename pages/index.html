@@ -11,13 +11,12 @@
 // var obj = jQuery.parseJSON( '{"icon": "https://d30y9cdsu7xlg0.cloudfront.net/png/72408-200.png", "image_credit": "Nick Karvounis", "image_url": "https://images.unsplash.com/photo-1477764803552-6dd3f4744774?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=310b3fe8a321e92977fc1461c3254f1a", "quot": "When we see men of worth, we should think of equaling them; when we see men of a contrary character, we should turn inwards and examine ourselves. "}');
 
 $(document).ready(function(){
-	$.ajax({
-	    url: 'https://yale-oran-moshe.herokuapp.com/product/car',
-	    type: 'GET',
-	    //data: 'ID=1&Name=John&Age=10', // or $('#myform').serializeArray()
-	    success: function(data) { appenData(data); }
-	});
 
+	$.getJSON('https://yale-oran-moshe.herokuapp.com/product/car&callback=?&minx=-30&miny=0&maxx=0&maxy=150', 
+	function(json) {
+	     appenData(json);
+	});
+	
 	function appenData(data){
 		$("#icon").append(obj.icon);
 		$("#image_credit").append(obj.icon);
