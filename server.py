@@ -29,17 +29,22 @@ def getQuot():
     
 #size {full,regular,small,raw,thumb}
 def getRandomImage(query,size):
-    payload = {'client_id':'1c0bb206a9c3cfdd323a17038e7ffea88053a03fd42e23e20f12cfd766fa8107','query':'cat'}
+    payload = {'client_id':'1c0bb206a9c3cfdd323a17038e7ffea88053a03fd42e23e20f12cfd766fa8107','query':query}
     r = requests.get('https://api.unsplash.com/photos/random', params = payload)
     if(r.status_code==200):
         response = r.json()
-        return response['urls'][size]
+        data = {}
+        data["url"] = response["urls"][size]
+        data["name"] = response["user"]["name"]
+        return data
     
 @app.route('/product/<query>', methods = ['GET'])
 def api_hello(query):
     data = {}
     data["icon"] = getIconByTerm(query,"200")
-    data["image"] = getRandomImage(query,"regular")
+    image = getRandomImage(query,"regular")
+    data["image_url"] = image["url"]
+    data["image_credit"] = image["name"]
     data["quot"] = getQuot()
     json_data = json.dumps(data)
 
