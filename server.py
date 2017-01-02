@@ -46,7 +46,7 @@ def getRandomImage(query,size):
 def api_hello(query):
     data = {}
     data["icon"] = getIconByTerm(query,"200")
-    image = getRandomImage(query,"regular")
+    image = getRandomImage(query,"full")
     data["image_url"] = image["url"]
     data["image_credit"] = image["name"]
     data["quot"] = getQuot()
