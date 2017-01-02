@@ -12,10 +12,13 @@
 
 $(document).ready(function(){
 
-	function init(){
-		$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ $("#term").val()+'?callback=non', 
+	$('#submit').click(function init(){
+		var val = $("#term").val();
+		console.log(val);
+		$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ val +'?callback=non', 
 		function(json) {
 		     appenData(json);
+		     console.log(json);
 		});
 		
 		function appenData(obj){
@@ -24,17 +27,7 @@ $(document).ready(function(){
 			$("#image_url").append('<img src=\"' + obj.image_url +'\">');
 			$("#quot").append(obj.quot);
 		}
-
-		function getParameterByName(name, url) {
-		    if (!url) url = window.location.href;
-		    name = name.replace(/[\[\]]/g, "\\$&");
-		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-		        results = regex.exec(url);
-		    if (!results) return null;
-		    if (!results[2]) return '';
-		    return decodeURIComponent(results[2].replace(/\+/g, " "));
-		}
-	}
+	});
 
 });
 </script>
@@ -42,7 +35,7 @@ $(document).ready(function(){
 <body>
 
 Term: <input type="text" id="term" name="Term" value="car"><br>
-<input type="submit" value="Submit" onclick="init()">
+<input id="submit" value="Submit">
 
 <div id="icon"></div>
 <div id="image_credit"></div>
