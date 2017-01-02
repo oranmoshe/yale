@@ -12,32 +12,38 @@
 
 $(document).ready(function(){
 
-	$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+getParameterByName('term'), 
-	function(json) {
-	     appenData(json);
-	});
-	
-	function appenData(obj){
-		$("#icon").append('<img src=\"' + obj.icon +'\">');
-		$("#image_credit").append(obj.image_credit);
-		$("#image_url").append('<img src=\"' + obj.image_url +'\">');
-		$("#quot").append(obj.quot);
-	}
+	function init(){
+		$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ $("#term").val(), 
+		function(json) {
+		     appenData(json);
+		});
+		
+		function appenData(obj){
+			$("#icon").append('<img src=\"' + obj.icon +'\">');
+			$("#image_credit").append(obj.image_credit);
+			$("#image_url").append('<img src=\"' + obj.image_url +'\">');
+			$("#quot").append(obj.quot);
+		}
 
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
+		function getParameterByName(name, url) {
+		    if (!url) url = window.location.href;
+		    name = name.replace(/[\[\]]/g, "\\$&");
+		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		        results = regex.exec(url);
+		    if (!results) return null;
+		    if (!results[2]) return '';
+		    return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+	}
 
 });
 </script>
 </head>
 <body>
+<form action="post" onsubmit="init()">
+Term: <input type="text" id="term" name="Term" value="Mickey"><br>
+<input type="submit" value="Submit">
+</form>
 <div id="icon"></div>
 <div id="image_credit"></div>
 <div id="image_url"></div>
