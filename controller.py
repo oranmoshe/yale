@@ -38,7 +38,7 @@ def getIconByTerm(term,height):
                 random_index =  randint(0,counts-1)
                 svg = str(js['icons'][random_index]).find('.svg')
             return js['icons'][random_index]['icon_url']
-    except(error):
+    except error:
         print("getIconByTerm crushed!")  
 
 
@@ -49,7 +49,7 @@ def getQuot():
             response = (response.content).decode("utf-8")
             js = json.loads(response)
             return js['quoteText']
-    except(error):
+    except error:
         print("getQuot crushed!")  
 
 #size {full,regular,small,raw,thumb}
@@ -63,7 +63,7 @@ def getRandomImage(query,size):
             data["url"] = response["urls"][size]
             data["name"] = response["user"]["name"]
             return data
-    except(error):
+    except error:
         print("getRandomImage crushed!")  
 
 def getDominantColor(url,_quality=1):
