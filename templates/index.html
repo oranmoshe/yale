@@ -5,55 +5,77 @@
 	<script src="static/js/color-thief.js"></script>
 	<script src="static/js/index.js"></script>
 	<link rel="stylesheet" type="text/css" href="static/css/style.css"> 
+	<style>
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+		html,body{
+			height:100%;
+			position: relative;
+			overflow: hidden;
+		}
+		.image{
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			width:100%;
+			height:100%;
+		}
+		.image img{
+			width:100%;
+			height:100%;
+		}
+		.icon{
+			position: relative;
+			margin-top: 5%;
+			margin-left: 5%;
+			width: 100%;
+		}
+		.icon svg{
+			width:20%;
+		}
+		.quot{
+			position: absolute;
+			bottom: 0px;
+			right: 0px;
+			font-size: 2em;
+		}
+		.blockquote{
+			bottom: 0px;
+			left: 0px;
+		}
+	</style>
 </head>
 <body>
 	<main>
-		<div id="image">
-			<div id="icon"></div>
-			<div id="quot"></div>
-			<blockquote>
-				<a target="_blank"  id="credit"></a> / <a href="https://unsplash.com/" target="_blank">Unsplash</a>
+		<section class="commercial">
+			<div class="image"></div>
+			<div class="icon"></div>
+			<div class="quot"></div>
+			<blockquote class="blockquote">
+				<a target="_blank"  class="credit"></a> / <a href="https://unsplash.com/" target="_blank">Unsplash</a>
 			</blockquote>
-		</div>
+		</section>
+		<section class="commercial">
+
+		</section>
 	</main>
 	<script>
 		// init elements
-		QUOT = $('#quot');
-		ICON = $('#icon');
-		IMAGE = $('#image');
-		CREDIT = $('#credit');
+		QUOT = $('.quot');
+		ICON = $('.icon');
+		IMAGE = $('.image');
+		CREDIT = $('.credit');
 
 		// init colors
 		function initElementsColors(){
-			console.log('inittt');
-			// coloring text:
-			$("#quot-0").css('color',COLOR_DOMINANT);
-			$("#quot-1").css('color',COLOR_1);
-			$("#quot-2").css('color',COLOR_2);
-			$("#quot-3").css('color',COLOR_3);
-			$("#quot-4").css('color',COLOR_4);
-			$("#quot-5").css('color',COLOR_5);
-			$("#quot-6").css('color',COLOR_6);
-			$("#quot-7").css('color',COLOR_7);
-			$("#quot-8").css('color',COLOR_8);
-			$("#quot-9").css('color',COLOR_9);
-			// coloring backgrounds:
-			$("#box-0").css('background-color',COLOR_DOMINANT);
-			$("#box-1").css('background-color',COLOR_1);
-			$("#box-2").css('background-color',COLOR_2);
-			$("#box-3").css('background-color',COLOR_3);
-			$("#box-4").css('background-color',COLOR_4);
-			$("#box-5").css('background-color',COLOR_5);
-			$("#box-6").css('background-color',COLOR_6);
-			$("#box-7").css('background-color',COLOR_7);
-			$("#box-8").css('background-color',COLOR_8);
-			$("#box-9").css('background-color',COLOR_9);
-			// coloring svg's:
-			$("svg").css('fill',COLOR_DOMINANT);
+			$(QUOT).css('color',COLOR_2);
+			$(ICON).find('svg').css('fill',COLOR_2);
 		}
 
 		run();
-		
+
 	</script>
 </body>
 </html>

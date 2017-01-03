@@ -18,11 +18,12 @@ var CREDIT = null;
 function run(){
 	var vocabulary = ["car","dog","sun"];
 	var index = 0;
+	generateCommercial(vocabulary[index++]);
 	setInterval(function(){
-		generateCommercial(vocabulary[index++]);
 		if(index==vocabulary.length)
 			index=0;
-	}, 3000);
+		generateCommercial(vocabulary[index++]);
+	}, 20000);
 
 }
 
@@ -35,22 +36,21 @@ $(document).ready(function(){
 function generateCommercial(term){
 	$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ term +'?callback=non', 
 	function(json) {
+		if(json["image_url"]!=""){
+  			imageColors(json["image_url"]);
+		}else{
+			imageColors('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?dpr=2&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=');
+		}
 		$(QUOT).html(json["quot"]) 
 		$(ICON).html(json["icon_svg"])
 		$(CREDIT).html(json["image_credit"])
-		if(json["image_url"]!=""){
-  			imageColors(json["image_url"]);
-  			$(IMAGE).css('background-image','url('+json["image_url"]+')');
-		}else{
-			imageColors('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?dpr=2&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=');
-  			$(IMAGE).html('<img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?dpr=2&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=" style=\"width:100%\">')
-		}
 	});
 }
 
 function imageColors(image_url){
 	var colorThief = new ColorThief();
 	colorThief.getColorsAsync(image_url,function(color, element){
+		$(IMAGE).html(element);
 		COLOR_DOMINANT = 'rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')';
 		COLOR_1 = 'rgb('+color[1][0]+','+color[1][1]+','+color[1][2]+')';
 		COLOR_2 = 'rgb('+color[2][0]+','+color[2][1]+','+color[2][2]+')';
