@@ -28,6 +28,8 @@ def api_hello(query):
     if(image):
         data["image_url"] = image["url"]
         data["image_credit"] = image["name"]
+    else:
+        data["image_url"] = 'http://nana10digital.checkm8.com/data/2091361/300X250%20YESHIROT.jpg';
     data["quot"] = controller.getQuot()
     json_data = json.dumps(data)
     resp = Response(json_data, status=200, mimetype='application/json')
