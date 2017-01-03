@@ -42,6 +42,7 @@ $(document).ready(function(){
 			COLOR_7 = 'rgb('+color[7][0]+','+color[7][1]+','+color[7][2]+')';
 			COLOR_8 = 'rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')';
 			COLOR_9 = 'rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')';
+			$("#quot-0").css('color',COLOR_DOMINANT);
 		});
 	}
 
