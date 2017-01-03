@@ -14,7 +14,7 @@ $(document).ready(function(){
 		function appenData(obj){
 			// icon manipulates
 
-			$("#icon").html('<embed name="E" id="E" src=\"' + obj.icon +'\" width="350" height="150" style="fill: red;">');
+			$("#icon").html(obj.icon_svg);
 			$("#image_credit").html(obj.image_credit);
 			$("#image_url").html('<img src=\"' + obj.image_url +'\">');
 			$(".quot").html(obj.quot);
