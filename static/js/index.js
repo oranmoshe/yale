@@ -14,7 +14,7 @@ $(document).ready(function(){
 		function appenData(obj){
 			$("#icon").html('<img src=\"' + obj.icon +'\">');
 			$("#image_credit").html(obj.image_credit);
-			$("#image_url").html('<img src=\"' + obj.image_url +'\">');
+			$("#image_url").html('<svg src=\"' + obj.image_url +'\"></svg>');
 			$(".quot").html(obj.quot);
 		}
 
