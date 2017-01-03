@@ -1,5 +1,5 @@
 from flask import Flask, url_for, json,Response,render_template,send_from_directory
-from flask.ext.cors import CORS, cross_origin
+from flask_cors import CORS, cross_origin
 
 import requests,os
 from requests_oauthlib import OAuth1
@@ -16,7 +16,7 @@ else:
 import io
 from colorthief import ColorThief
 
-
+from random import randint
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -25,36 +25,54 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 # height:{200,42,84}
 def getIconByTerm(term,height):
-    auth = OAuth1("85a512e87dce48dba9ea17e2f770e044", "2a1a3389bc624597a54e9af0adb18403")
-    endpoint = "http://api.thenounproject.com/icon/" + term
-    response = requests.get(endpoint, auth=auth)
-    #print d['glossary']['title']
-    if(response.status_code==200):
-        response = (response.content).decode("utf-8");
-        js = json.loads(response)
-        if(height=="200"):
-            height = ""
-        else:
-            height = "_"+height
-        return js['icon']['preview_url'+height+'']
-    
+    try:
+        auth = OAuth1("85a512e87dce48dba9ea17e2f770e044", "2a1a3389bc624597a54e9af0adb18403")
+        endpoint = "http://api.thenounproject.com/icons/" + term
+        response = requests.get(endpoint, auth=auth)
+        #print d['glossary']['title']
+        if(response.status_code==200):
+            response = (response.content).decode("utf-8");
+            js = json.loads(response)
+            if(height=="200"):
+                height = ""
+            else:
+                height = "_"+height
+            counts = len(js['icons'])
+           
+            print(counts)
+            svg = -1
+            random_index = 0
+            while svg == -1:
+                random_index =  randint(0,counts-1)
+                svg = str(js['icons'][random_index]).find('.svg')
+            return js['icons'][random_index]['icon_url']
+    except(error):
+        print("getIconByTerm crushed!")  
+
+
 def getQuot():
-    response = get('http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en')
-    if(response.status_code==200):
-        response = (response.content).decode("utf-8")
-        js = json.loads(response)
-        return js['quoteText']
-    
+    try:
+        response = get('http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en')
+        if(response.status_code==200):
+            response = (response.content).decode("utf-8")
+            js = json.loads(response)
+            return js['quoteText']
+    except(error):
+        print("getQuot crushed!")  
+
 #size {full,regular,small,raw,thumb}
 def getRandomImage(query,size):
-    payload = {'client_id':'1c0bb206a9c3cfdd323a17038e7ffea88053a03fd42e23e20f12cfd766fa8107','query':query}
-    r = requests.get('https://api.unsplash.com/photos/random', params = payload)
-    if(r.status_code==200):
-        response = r.json()
-        data = {}
-        data["url"] = response["urls"][size]
-        data["name"] = response["user"]["name"]
-        return data
+    try:
+        payload = {'client_id':'1c0bb206a9c3cfdd323a17038e7ffea88053a03fd42e23e20f12cfd766fa8107','query':query}
+        r = requests.get('https://api.unsplash.com/photos/random', params = payload)
+        if(r.status_code==200):
+            response = r.json()
+            data = {}
+            data["url"] = response["urls"][size]
+            data["name"] = response["user"]["name"]
+            return data
+    except(error):
+        print("getRandomImage crushed!")  
 
 def getDominantColor(url,_quality=1):
     fd = urlopen('http://lokeshdhakar.com/projects/color-thief/img/photo1.jpg')
@@ -75,8 +93,9 @@ def api_hello(query):
     data = {}
     data["icon"] = getIconByTerm(query,"200")
     image = getRandomImage(query,"full")
-    data["image_url"] = image["url"]
-    data["image_credit"] = image["name"]
+    if(image):
+        data["image_url"] = image["url"]
+        data["image_credit"] = image["name"]
     data["quot"] = getQuot()
     json_data = json.dumps(data)
 

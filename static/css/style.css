@@ -2,5 +2,6 @@
 		height:30px;
 		width: 50px;
 		margin:5px;
+		border-radius: 5px;
 		display: inline-block;
 	}
