@@ -23,6 +23,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def api_hello(query):
     data = {}
     data["icon"] = controller.getIconByTerm(query,"200")
+    data["icon_svg"] = controller.getDomElements(data["icon"]);
     image = controller.getRandomImage(query,"full")
     if(image):
         data["image_url"] = image["url"]
