@@ -1,15 +1,27 @@
-from flask import Flask, url_for, json,Response
-
+from flask import Flask, url_for, json,Response,render_template,send_from_directory
 from flask.ext.cors import CORS, cross_origin
+
 import requests,os
 from requests_oauthlib import OAuth1
 from requests import get
+
 from json import loads
 
-tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
-app = Flask(__name__, template_folder=tmpl_dir)
+# color thief
+import sys
+if sys.version_info < (3, 0):
+    from urllib2 import urlopen
+else:
+    from urllib.request import urlopen
+import io
+from colorthief import ColorThief
+
+
+
+app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 # height:{200,42,84}
 def getIconByTerm(term,height):
@@ -20,11 +32,7 @@ def getIconByTerm(term,height):
     if(response.status_code==200):
         response = (response.content).decode("utf-8");
         js = json.loads(response)
-        if(height=="200"):
-            height = ""
-        else:
-            height = "_"+height
-        return js['icon']['preview_url'+height+'']
+        return js['icon']['icon_url']
     
 def getQuot():
     response = get('http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en')
@@ -43,6 +51,19 @@ def getRandomImage(query,size):
         data["url"] = response["urls"][size]
         data["name"] = response["user"]["name"]
         return data
+
+def getDominantColor(url,_quality=1):
+    fd = urlopen('http://lokeshdhakar.com/projects/color-thief/img/photo1.jpg')
+    f = io.BytesIO(fd.read())
+    color_thief = ColorThief(f)
+    return color_thief.get_color(quality=1)
+
+def getPalette(url,_color_count=6):
+    fd = urlopen('http://lokeshdhakar.com/projects/color-thief/img/photo1.jpg')
+    f = io.BytesIO(fd.read())
+    color_thief = ColorThief(f)
+    return color_thief.get_palette(quality=1)
+
     
 @app.route('/product/<query>', methods = ['GET'])
 @cross_origin()
@@ -60,13 +81,21 @@ def api_hello(query):
 
     return resp
 
+@app.route('/hello/')
+@app.route('/hello/<name>')
+def hello(name=None):
+    return render_template('hello.html', name=name)
+
+@app.route('/js/<path:path>')
+def send_js(path):
+    return send_from_directory('js', path)
 
 @app.route('/')
 def root():
-    return app.send_static_file('index.html')
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug = True)
