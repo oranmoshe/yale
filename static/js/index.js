@@ -2,28 +2,23 @@
 $(document).ready(function(){
 
 	$('#submit').click(function init(){
-		var val = $("#term").val();
-		console.log(val);
+
 		$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ val +'?callback=non', 
 		function(json) {
 		     appenData(json);
-		     console.log(json);
 			 imageColors(json.image_url);
 		});
 		
 		function appenData(obj){
-			// icon manipulates
-
 			$("#icon").html(obj.icon_svg);
 			$("#image_credit").html(obj.image_credit);
-			$("#image_url").html('<img src=\"' + obj.image_url +'\">');
 			$(".quot").html(obj.quot);
-
 		}
 
 		function imageColors(image_url){
 			var colorThief = new ColorThief();
 			colorThief.getColorsAsync(image_url,function(color, element){
+				$("#image_url").append(element);
 		        $('.dominant').css('color','rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')');
 		        $('.color1').css('color','rgb('+color[1][0]+','+color[1][1]+','+color[1][2]+')');
 		        $('.color2').css('color','rgb('+color[2][0]+','+color[2][1]+','+color[2][2]+')');
@@ -44,7 +39,8 @@ $(document).ready(function(){
 		        $('.box.color7').css('background-color','rgb('+color[7][0]+','+color[7][1]+','+color[7][2]+')');
 		        $('.box.color8').css('background-color','rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')');
 		        $('.box.color9').css('background-color','rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')');
-		        $('path').css('fill','rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')');
+		        $('svg').css('fill','rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')');
+
 		        console.log(color);
         	});
 
