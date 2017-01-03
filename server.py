@@ -31,8 +31,8 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @cross_origin()
 def api_hello(query):
     data = {}
-    data["icon"] = getIconByTerm(query,"200")
-    image = getRandomImage(query,"full")
+    data["icon"] = controller.getIconByTerm(query,"200")
+    image = controller.getRandomImage(query,"full")
     if(image):
         data["image_url"] = image["url"]
         data["image_credit"] = image["name"]
