@@ -44,7 +44,7 @@ $(document).ready(function(){
 		        $('.box.color7').css('background-color','rgb('+color[7][0]+','+color[7][1]+','+color[7][2]+')');
 		        $('.box.color8').css('background-color','rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')');
 		        $('.box.color9').css('background-color','rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')');
-		        $('svg').css('fill','rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')');
+		        $('path').css('fill','rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')');
 		        console.log(color);
         	});
 
