@@ -44,8 +44,8 @@ def getIconByTerm(term,height):
         print("getIconByTerm crushed!")  
 
 def getDomElements(url):
-    response = request.urlopen(url)
-    return (response.read().decode('utf-8'))
+    response = urlopen(url)
+    return (response.read())#.decode('utf-8')
 
 
 def getQuot():
