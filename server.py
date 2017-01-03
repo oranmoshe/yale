@@ -18,6 +18,9 @@ from colorthief import ColorThief
 
 from random import randint
 
+from urllib.request import urlopen
+
+
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -45,8 +48,8 @@ def getIconByTerm(term,height):
             while svg == -1:
                 random_index =  randint(0,counts-1)
                 svg = str(js['icons'][random_index]).find('.svg')
-            return js['icons'][random_index]['icon_url']
-    except(error):
+            return getSVG(js['icons'][random_index]['icon_url'])
+    except:
         print("getIconByTerm crushed!")  
 
 
@@ -57,8 +60,13 @@ def getQuot():
             response = (response.content).decode("utf-8")
             js = json.loads(response)
             return js['quoteText']
-    except(error):
+    except:
         print("getQuot crushed!")  
+
+def getSVG(url):
+    response = urlopen(url)
+    return response.read()
+   
 
 #size {full,regular,small,raw,thumb}
 def getRandomImage(query,size):
@@ -71,7 +79,7 @@ def getRandomImage(query,size):
             data["url"] = response["urls"][size]
             data["name"] = response["user"]["name"]
             return data
-    except(error):
+    except:
         print("getRandomImage crushed!")  
 
 def getDominantColor(url,_quality=1):
@@ -103,6 +111,12 @@ def api_hello(query):
     resp.headers['Link'] = 'http://yo.com'
 
     return resp
+
+
+@app.route('/svg/<url>', methods = ['GET'])
+@cross_origin()
+def svg(url):
+    return getSVG(url)
 
 @app.route('/hello/')
 @app.route('/hello/<name>')

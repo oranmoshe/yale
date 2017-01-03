@@ -12,10 +12,13 @@ $(document).ready(function(){
 		});
 		
 		function appenData(obj){
-			$("#icon").html('<svg src=\"' + obj.icon +'\"></svg>');
+			// icon manipulates
+
+			$("#icon").html('<embed name="E" id="E" src=\"' + obj.icon +'\" width="350" height="150" style="fill: red;">');
 			$("#image_credit").html(obj.image_credit);
 			$("#image_url").html('<img src=\"' + obj.image_url +'\">');
 			$(".quot").html(obj.quot);
+
 		}
 
 		function imageColors(image_url){
@@ -43,12 +46,18 @@ $(document).ready(function(){
 		        $('.box.color9').css('background-color','rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')');
 		        console.log(color);
         	});
+
+
+
+			D=document.getElementById("E")
+			D.addEventListener('load', function() { 
+				alert(D);
+				$(D).append(ksksks);
+			});
+
+			
 		}
-		var icon = $('svg')
-		icon.addEventListener("load", function() {
-		    var doc = this.getSVGDocument();
-		    doc.setAttribute("fill", "green");
-		});
+
 
 	});
 
