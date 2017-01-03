@@ -1,3 +1,6 @@
+from flask import Flask, url_for, json,Response,render_template,send_from_directory
+from flask_cors import CORS, cross_origin
+
 import requests,os
 from requests_oauthlib import OAuth1
 from requests import get
@@ -14,7 +17,6 @@ import io
 from colorthief import ColorThief
 
 from random import randint
-
 # height:{200,42,84}
 def getIconByTerm(term,height):
     try:
