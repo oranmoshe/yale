@@ -48,14 +48,6 @@ $(document).ready(function(){
         	});
 
 
-
-			D=document.getElementById("E")
-			D.addEventListener('load', function() { 
-				alert(D);
-				$(D).append(ksksks);
-			});
-
-			
 		}
 
 
