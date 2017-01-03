@@ -48,7 +48,7 @@ def getIconByTerm(term,height):
             while svg == -1:
                 random_index =  randint(0,counts-1)
                 svg = str(js['icons'][random_index]).find('.svg')
-            return getSVG(js['icons'][random_index]['icon_url'])
+            return js['icons'][random_index]['icon_url']
     except:
         print("getIconByTerm crushed!")  
 
