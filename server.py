@@ -32,7 +32,7 @@ def getIconByTerm(term,height):
     if(response.status_code==200):
         response = (response.content).decode("utf-8");
         js = json.loads(response)
-        return js['icon'][0]['icon_url']
+        return js
     
 def getQuot():
     response = get('http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en')
