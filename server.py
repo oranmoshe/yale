@@ -36,7 +36,7 @@ def api_hello(query):
     if(image):
         data["image_url"] = image["url"]
         data["image_credit"] = image["name"]
-    data["quot"] = getQuot()
+    data["quot"] = controller.getQuot()
     json_data = json.dumps(data)
 
     resp = Response(json_data, status=200, mimetype='application/json')
