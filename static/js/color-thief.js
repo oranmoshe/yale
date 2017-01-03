@@ -188,7 +188,7 @@ ColorThief.prototype.getColorsAsync = function(imageUrl, callback, quality) {
     this.getImageData(imageUrl, function(imageData){
         sourceImage = document.createElement("img");
         sourceImage.addEventListener('load' , function(){
-            var palette = thief.getPalette(sourceImage, 11, quality);
+            var palette = thief.getPalette(sourceImage, 15, quality);
             callback(palette, this);
         });
         sourceImage.src = imageData;      
