@@ -12,9 +12,9 @@ $(document).ready(function(){
 		});
 		
 		function appenData(obj){
-			$("#icon").html('<img src=\"' + obj.icon +'\">');
+			$("#icon").html('<svg src=\"' + obj.icon +'\"></svg>');
 			$("#image_credit").html(obj.image_credit);
-			$("#image_url").html('<svg src=\"' + obj.image_url +'\"></svg>');
+			$("#image_url").html('<img src=\"' + obj.image_url +'\">');
 			$(".quot").html(obj.quot);
 		}
 
@@ -44,6 +44,11 @@ $(document).ready(function(){
 		        console.log(color);
         	});
 		}
+		var icon = $('svg')
+		icon.addEventListener("load", function() {
+		    var doc = this.getSVGDocument();
+		    doc.setAttribute("fill", "green");
+		});
 
 	});
 
