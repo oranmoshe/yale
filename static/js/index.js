@@ -18,6 +18,7 @@ var CREDIT = null;
 $('#submit').click(function init(){
 	$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ $('#term').val() +'?callback=non', 
 	function(json) {
+			console.log(json);
 			$(QUOT).html(json["quot"]) 
 			$(ICON).html(json["icon_svg"])
 			$(IMAGE).html('<img src='+json["image_url"]+' style=\"width:100%\">')
