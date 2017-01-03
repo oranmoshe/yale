@@ -25,41 +25,41 @@ $(document).ready(function(){
 				$(IMAGE).html('<img src='+json["image_url"]+' style=\"width:100%\">')
 				$(CREDIT).html(json["image_credit"])
 		  		imageColors(json["image_url"]);
+		  		init();
 		});
-		// //init();
 	});
+
+	function imageColors(image_url){
+		var colorThief = new ColorThief();
+		colorThief.getColorsAsync(image_url,function(color, element){
+			COLOR_DOMINANT = 'rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')';
+			COLOR_1 = 'rgb('+color[1][0]+','+color[1][1]+','+color[1][2]+')';
+			COLOR_2 = 'rgb('+color[2][0]+','+color[2][1]+','+color[2][2]+')';
+			COLOR_3 = 'rgb('+color[3][0]+','+color[3][1]+','+color[3][2]+')';
+			COLOR_4 = 'rgb('+color[4][0]+','+color[4][1]+','+color[4][2]+')';
+			COLOR_5 = 'rgb('+color[5][0]+','+color[5][1]+','+color[5][2]+')';
+			COLOR_6 = 'rgb('+color[6][0]+','+color[6][1]+','+color[6][2]+')';
+			COLOR_7 = 'rgb('+color[7][0]+','+color[7][1]+','+color[7][2]+')';
+			COLOR_8 = 'rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')';
+			COLOR_9 = 'rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')';
+		});
+	}
+
+	// function loadImage(url){
+	// 	var colorThief = new ColorThief();
+	// 	colorThief.getColorAsync('http://images.wcdn.co.il/2301527-54.jpg?crop=w635&output=webp',function(color, element){
+	// 		COLOR_DOMINANT = 'rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')';
+	// 		COLOR_1 = 'rgb('+color[1][0]+','+color[1][1]+','+color[1][2]+')';
+	// 		COLOR_2 = 'rgb('+color[2][0]+','+color[2][1]+','+color[2][2]+')';
+	// 		COLOR_3 = 'rgb('+color[3][0]+','+color[3][1]+','+color[3][2]+')';
+	// 		COLOR_4 = 'rgb('+color[4][0]+','+color[4][1]+','+color[4][2]+')';
+	// 		COLOR_5 = 'rgb('+color[5][0]+','+color[5][1]+','+color[5][2]+')';
+	// 		COLOR_6 = 'rgb('+color[6][0]+','+color[6][1]+','+color[6][2]+')';
+	// 		COLOR_7 = 'rgb('+color[7][0]+','+color[7][1]+','+color[7][2]+')';
+	// 		COLOR_8 = 'rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')';
+	// 		COLOR_9 = 'rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')';
+	// 	});
+	// }
 });
 
-function imageColors(image_url){
-	var colorThief = new ColorThief();
-	colorThief.getColorsAsync(image_url,function(color, element){
-		COLOR_DOMINANT = 'rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')';
-		COLOR_1 = 'rgb('+color[1][0]+','+color[1][1]+','+color[1][2]+')';
-		COLOR_2 = 'rgb('+color[2][0]+','+color[2][1]+','+color[2][2]+')';
-		COLOR_3 = 'rgb('+color[3][0]+','+color[3][1]+','+color[3][2]+')';
-		COLOR_4 = 'rgb('+color[4][0]+','+color[4][1]+','+color[4][2]+')';
-		COLOR_5 = 'rgb('+color[5][0]+','+color[5][1]+','+color[5][2]+')';
-		COLOR_6 = 'rgb('+color[6][0]+','+color[6][1]+','+color[6][2]+')';
-		COLOR_7 = 'rgb('+color[7][0]+','+color[7][1]+','+color[7][2]+')';
-		COLOR_8 = 'rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')';
-		COLOR_9 = 'rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')';
-		init();
-	});
-}
-
-function loadImage(url){
-	var colorThief = new ColorThief();
-	colorThief.getColorAsync('http://images.wcdn.co.il/2301527-54.jpg?crop=w635&output=webp',function(color, element){
-		COLOR_DOMINANT = 'rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')';
-		COLOR_1 = 'rgb('+color[1][0]+','+color[1][1]+','+color[1][2]+')';
-		COLOR_2 = 'rgb('+color[2][0]+','+color[2][1]+','+color[2][2]+')';
-		COLOR_3 = 'rgb('+color[3][0]+','+color[3][1]+','+color[3][2]+')';
-		COLOR_4 = 'rgb('+color[4][0]+','+color[4][1]+','+color[4][2]+')';
-		COLOR_5 = 'rgb('+color[5][0]+','+color[5][1]+','+color[5][2]+')';
-		COLOR_6 = 'rgb('+color[6][0]+','+color[6][1]+','+color[6][2]+')';
-		COLOR_7 = 'rgb('+color[7][0]+','+color[7][1]+','+color[7][2]+')';
-		COLOR_8 = 'rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')';
-		COLOR_9 = 'rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')';
-	});
-}
 
