@@ -45,6 +45,10 @@ def send_js(path):
 def root():
     return render_template('index.html')
 
+@app.route('/example')
+def root():
+    return render_template('example.html')
+
 @app.route('/hello/')
 @app.route('/hello/<name>')
 def hello(name=None):
