@@ -61,11 +61,11 @@ function imageColors(image_url,json){
 		COLOR_7 = 'rgb('+color[7][0]+','+color[7][1]+','+color[7][2]+')';
 		COLOR_8 = 'rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')';
 		COLOR_9 = 'rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')';
-        initElementsColors();
         $(IMAGE).html(element);
-        $(QUOT).html(json["quot"]) 
-		$(ICON).html(json["icon_svg"])
-		$(CREDIT).html(json["image_credit"])
+        $(QUOT).html(json["quot"]);
+		$(ICON).html(json["icon_svg"]);
+		$(CREDIT).html(json["image_credit"]);
+		initElementsColors();
 	});
 }
 
