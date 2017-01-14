@@ -60,6 +60,10 @@ def api_hello2(icon,image):
 def send_js(path):
     return send_from_directory('js', path)
 
+@app.route('/data/<path:path>')
+def send_js(path):
+    return send_from_directory('data', path)
+
 @app.route('/')
 def root():
     return render_template('index.html')
