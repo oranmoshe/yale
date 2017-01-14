@@ -20,7 +20,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/product/<query>', methods = ['GET'])
 @cross_origin()
-def api_hello(query):
+def api_product(query):
     data = {}
     data["icon"] = controller.getIconByTerm(query,"200")
     data["icon_svg"] = controller.getDomElements(data["icon"]);
@@ -37,16 +37,16 @@ def api_hello(query):
     resp.headers['Link'] = 'http://yo.com'
     return resp
 
-@app.route('/getIcon/<icon>/<image>', methods = ['GET'])
+@app.route('/product/<icon>/<image>', methods = ['GET'])
 @cross_origin()
-def api_hello2(icon,_image):
+def api_product_2(icon,image):
     data = {}
     data["icon"] = controller.getIconByTerm(icon,"200")
     data["icon_svg"] = controller.getDomElements(data["icon"]);
-    image = controller.getRandomImage(_image,"full")
+    _image = controller.getRandomImage(image,"full")
     if(image):
-        data["image_url"] = image["url"]
-        data["image_credit"] = image["name"]
+        data["image_url"] = _image["url"]
+        data["image_credit"] = _image["name"]
     else:
         data["image_url"] = '';
         data["image_credit"] = '';
