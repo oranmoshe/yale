@@ -16,7 +16,10 @@ var IMAGE = null;
 var CREDIT = null;
 
 function run(){
-	var vocabulary = words;
+	var vocabulary = {}
+	$.getJSON("js/words.json", function(json) {
+    	vocabulary = json;
+	});	
 	var index = 0;
 	generateCommercial(vocabulary[index++]);
 	setInterval(function(){
