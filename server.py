@@ -37,6 +37,25 @@ def api_hello(query):
     resp.headers['Link'] = 'http://yo.com'
     return resp
 
+@app.route('/product/<icon>/<image>', methods = ['GET'])
+@cross_origin()
+def api_hello2(icon,image):
+    data = {}
+    data["icon"] = controller.getIconByTerm(icon,"200")
+    data["icon_svg"] = controller.getDomElements(data["icon"]);
+    image = controller.getRandomImage(image,"full")
+    if(image):
+        data["image_url"] = image["url"]
+        data["image_credit"] = image["name"]
+    else:
+        data["image_url"] = '';
+        data["image_credit"] = '';
+    data["quot"] = controller.getQuot()
+    json_data = json.dumps(data)
+    resp = Response(json_data, status=200, mimetype='application/json')
+    resp.headers['Link'] = 'http://yo.com'
+    return resp
+
 @app.route('/js/<path:path>')
 def send_js(path):
     return send_from_directory('js', path)
@@ -44,6 +63,10 @@ def send_js(path):
 @app.route('/')
 def root():
     return render_template('index.html')
+
+@app.route('/example/')
+def example():
+    return render_template('example.html')
 
 @app.route('/hello/')
 @app.route('/hello/<name>')
