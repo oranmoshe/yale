@@ -37,7 +37,7 @@ def api_product(query):
     resp.headers['Link'] = 'http://yo.com'
     return resp
 
-@app.route('/icom/<icon>/<image>', methods = ['GET'])
+@app.route('/icon/<icon>/image/<image>', methods = ['GET'])
 @cross_origin()
 def api_product_2(icon,image):
     data = {}
