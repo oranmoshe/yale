@@ -46,7 +46,7 @@ function generateCommercial(term){
 	});
 }
 
-function appendHTML(){
+var appendHTML = function appendHTML(){
 	$(QUOT).html(json["quot"]);
 	$(ICON).html(json["icon_svg"]);
 	$(CREDIT).html(json["image_credit"]);
@@ -67,6 +67,7 @@ function imageColors(image_url, callback){
 		COLOR_8 = 'rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')';
 		COLOR_9 = 'rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')';
         initElementsColors();
+        callback();
 	});
 }
 
