@@ -49,7 +49,7 @@ def send_json(path):
 def root():
     return render_template('index.html')
 
-@app.route('/example/')
+@app.route('/example')
 def example():
     return render_template('example.html')
 
