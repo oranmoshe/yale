@@ -38,25 +38,18 @@ $(document).ready(function(){
 function generateCommercial(term){
 	$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ term +'?callback=non', 
 	function(json) {
-		var urls = "";
 		if(json["image_url"]!=""){
-  			urls = json["image_url"];
+  			imageColors(json["image_url"]);
 		}else{
-			urls = 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?dpr=2&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=';
-		}		
-		imageColors(urls,function(){
-			appendHTML(json);
-		});
+			imageColors('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?dpr=2&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=');
+		}
+		$(QUOT).html(json["quot"]) 
+		$(ICON).html(json["icon_svg"])
+		$(CREDIT).html(json["image_credit"])
 	});
 }
 
-function appendHTML(json){
-	$(QUOT).html(json["quot"]);
-	$(ICON).html(json["icon_svg"]);
-	$(CREDIT).html(json["image_credit"]);
-}
-
-function imageColors(image_url, callback){
+function imageColors(image_url){
 	var colorThief = new ColorThief();
 	colorThief.getColorsAsync(image_url,function(color, element){
 		$(IMAGE).html(element);
@@ -71,7 +64,6 @@ function imageColors(image_url, callback){
 		COLOR_8 = 'rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')';
 		COLOR_9 = 'rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')';
         initElementsColors();
-        callback();
 	});
 }
 
