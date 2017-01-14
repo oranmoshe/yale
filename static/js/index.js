@@ -15,7 +15,7 @@ var ICON = null;
 var IMAGE = null;
 var CREDIT = null;
 
-function runSame(){
+function run(){
 	var vocabulary = words;
 	// $.getJSON("js/words.json", function(json) {
  	// 	vocabulary = json;
@@ -25,21 +25,6 @@ function runSame(){
 	setInterval(function(){
 		x = Math.floor((Math.random() * words.length) + 1);		
 		generateCommercial(vocabulary[x]);
-	}, 20000);
-}
-
-function runRandom(){
-	var vocabulary = words;
-	// $.getJSON("js/words.json", function(json) {
- 	// 	vocabulary = json;
-	// });	
-	var x1 = Math.floor((Math.random() * words.length) + 1);
-	var x2 = Math.floor((Math.random() * words.length) + 1);
-	generateCommercial(vocabulary[x1],vocabulary[x2]);
-	setInterval(function(){
-		x1 = Math.floor((Math.random() * words.length) + 1);		
-		x2 = Math.floor((Math.random() * words.length) + 1);		
-		generateCommercial(vocabulary[x1],vocabulary[x2]);
 	}, 20000);
 }
 
