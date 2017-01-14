@@ -16,7 +16,7 @@ var IMAGE = null;
 var CREDIT = null;
 
 function run(){
-	var vocabulary = {}
+	var vocabulary = words;
 	// $.getJSON("js/words.json", function(json) {
  //    	vocabulary = json;
 	// });	
