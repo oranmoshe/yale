@@ -17,9 +17,9 @@ var CREDIT = null;
 
 function run(){
 	var vocabulary = {}
-	$.getJSON("js/words.json", function(json) {
-    	vocabulary = json;
-	});	
+	// $.getJSON("js/words.json", function(json) {
+ //    	vocabulary = json;
+	// });	
 	var index = 0;
 	generateCommercial(vocabulary[index++]);
 	setInterval(function(){
