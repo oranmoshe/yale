@@ -61,7 +61,7 @@ def send_js(path):
     return send_from_directory('js', path)
 
 @app.route('/data/<path:path>')
-def send_js(path):
+def send_json(path):
     return send_from_directory('data', path)
 
 @app.route('/')
