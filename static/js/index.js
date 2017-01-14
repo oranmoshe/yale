@@ -18,7 +18,7 @@ var CREDIT = null;
 function run(){
 	var vocabulary = words;
 	// $.getJSON("js/words.json", function(json) {
- //    	vocabulary = json;
+ 	// 	vocabulary = json;
 	// });	
 	var index = 0;
 	generateCommercial(vocabulary[index++]);
@@ -27,7 +27,6 @@ function run(){
 			index=0;
 		generateCommercial(vocabulary[index++]);
 	}, 20000);
-
 }
 
 $(document).ready(function(){
@@ -40,17 +39,20 @@ function generateCommercial(term){
 	$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ term +'?callback=non', 
 	function(json) {
 		if(json["image_url"]!=""){
-  			imageColors(json["image_url"]);
+  			imageColors(json["image_url"],appendHTML);
 		}else{
-			imageColors('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?dpr=2&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=');
+			imageColors('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?dpr=2&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=',appendHTML);
 		}
-		$(QUOT).html(json["quot"]) 
-		$(ICON).html(json["icon_svg"])
-		$(CREDIT).html(json["image_credit"])
 	});
 }
 
-function imageColors(image_url){
+function appendHTML(){
+	$(QUOT).html(json["quot"]);
+	$(ICON).html(json["icon_svg"]);
+	$(CREDIT).html(json["image_credit"]);
+}
+
+function imageColors(image_url, callback){
 	var colorThief = new ColorThief();
 	colorThief.getColorsAsync(image_url,function(color, element){
 		$(IMAGE).html(element);
