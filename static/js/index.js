@@ -47,20 +47,6 @@ function generateCommercial(term){
 	});
 }
 
-function generateCommercial(term1,term2){
-	console.log('https://yale-oran-moshe.herokuapp.com/product/'+ term1 +'/'+ term2 +'?callback=non');
-	$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ term1 +'/'+ term2 +'?callback=non', 
-	function(json) {
-		var image_url = "";
-		if(json["image_url"]!=""){
-  			image_url = json["image_url"];
-		}else{
-			image_url = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?dpr=2&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=";
-		}
-		imageColors(image_url,json);
-	});
-}
-
 function imageColors(image_url,json){
 	var colorThief = new ColorThief();
 	colorThief.getColorsAsync(image_url,function(color, element){		
