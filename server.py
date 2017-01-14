@@ -37,7 +37,7 @@ def api_product(query):
     resp.headers['Link'] = 'http://yo.com'
     return resp
 
-@app.route('/product/<icon>/<image>', methods = ['GET'])
+@app.route('/icom/<icon>/<image>', methods = ['GET'])
 @cross_origin()
 def api_product_2(icon,image):
     data = {}
@@ -53,7 +53,7 @@ def api_product_2(icon,image):
     # data["quot"] = controller.getQuot()
     json_data = json.dumps(data)
     resp = Response(json_data, status=200, mimetype='application/json')
-    resp.headers['Link'] = 'http://yo.com'
+    #resp.headers['Link'] = 'http://yo.com'
     return resp
 
 @app.route('/js/<path:path>')
