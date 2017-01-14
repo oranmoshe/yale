@@ -37,13 +37,13 @@ def api_hello(query):
     resp.headers['Link'] = 'http://yo.com'
     return resp
 
-@app.route('/product/<icon>/<image>', methods = ['GET'])
+@app.route('/getIcon/<icon>/<image>', methods = ['GET'])
 @cross_origin()
-def api_hello2(icon,image):
+def api_hello2(icon,_image):
     data = {}
     data["icon"] = controller.getIconByTerm(icon,"200")
     data["icon_svg"] = controller.getDomElements(data["icon"]);
-    image = controller.getRandomImage(image,"full")
+    image = controller.getRandomImage(_image,"full")
     if(image):
         data["image_url"] = image["url"]
         data["image_credit"] = image["name"]
