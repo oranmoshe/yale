@@ -41,16 +41,16 @@ def api_product(query):
 @cross_origin()
 def api_product_2(icon,image):
     data = {}
-    data["icon"] = controller.getIconByTerm(icon,"200")
-    data["icon_svg"] = controller.getDomElements(data["icon"]);
-    _image = controller.getRandomImage(image,"full")
-    if(_image):
-        data["image_url"] = _image["url"]
-        data["image_credit"] = _image["name"]
-    else:
-        data["image_url"] = '';
-        data["image_credit"] = '';
-    data["quot"] = controller.getQuot()
+    # data["icon"] = controller.getIconByTerm(icon,"200")
+    # data["icon_svg"] = controller.getDomElements(data["icon"]);
+    # _image = controller.getRandomImage(image,"full")
+    # if(_image):
+    #     data["image_url"] = _image["url"]
+    #     data["image_credit"] = _image["name"]
+    # else:
+    #     data["image_url"] = '';
+    #     data["image_credit"] = '';
+    # data["quot"] = controller.getQuot()
     json_data = json.dumps(data)
     resp = Response(json_data, status=200, mimetype='application/json')
     resp.headers['Link'] = 'http://yo.com'
