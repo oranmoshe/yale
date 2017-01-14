@@ -63,6 +63,7 @@ function generateCommercial(term){
 }
 
 function generateCommercial(term1,term2){
+	console.log('https://yale-oran-moshe.herokuapp.com/product/'+ term1 +'/'+ term2 +'?callback=non');
 	$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ term1 +'/'+ term2 +'?callback=non', 
 	function(json) {
 		var image_url = "";
