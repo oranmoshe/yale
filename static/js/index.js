@@ -20,12 +20,11 @@ function run(){
 	// $.getJSON("js/words.json", function(json) {
  	// 	vocabulary = json;
 	// });	
-	var index = 0;
-	generateCommercial(vocabulary[index++]);
+	var x = Math.floor((Math.random() * words.length) + 1);
+	generateCommercial(vocabulary[x]);
 	setInterval(function(){
-		if(index==vocabulary.length)
-			index=0;
-		generateCommercial(vocabulary[index++]);
+		x = Math.floor((Math.random() * words.length) + 1);		
+		generateCommercial(vocabulary[x]);
 	}, 20000);
 }
 
