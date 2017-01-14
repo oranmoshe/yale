@@ -44,7 +44,7 @@ def api_product_2(icon,image):
     data["icon"] = controller.getIconByTerm(icon,"200")
     data["icon_svg"] = controller.getDomElements(data["icon"]);
     _image = controller.getRandomImage(image,"full")
-    if(image):
+    if(_image):
         data["image_url"] = _image["url"]
         data["image_credit"] = _image["name"]
     else:
