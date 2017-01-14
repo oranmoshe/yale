@@ -51,8 +51,7 @@ function generateCommercial(term){
 
 function imageColors(image_url){
 	var colorThief = new ColorThief();
-	colorThief.getColorsAsync(image_url,function(color, element){
-		$(IMAGE).html(element);
+	colorThief.getColorsAsync(image_url,function(color, element){		
 		COLOR_DOMINANT = 'rgb('+color[0][0]+','+color[0][1]+','+color[0][2]+')';
 		COLOR_1 = 'rgb('+color[1][0]+','+color[1][1]+','+color[1][2]+')';
 		COLOR_2 = 'rgb('+color[2][0]+','+color[2][1]+','+color[2][2]+')';
@@ -64,6 +63,7 @@ function imageColors(image_url){
 		COLOR_8 = 'rgb('+color[8][0]+','+color[8][1]+','+color[8][2]+')';
 		COLOR_9 = 'rgb('+color[9][0]+','+color[9][1]+','+color[9][2]+')';
         initElementsColors();
+        $(IMAGE).html(element);
 	});
 }
 
