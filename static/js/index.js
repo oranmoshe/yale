@@ -35,7 +35,7 @@ function runRandom(){
 	// });	
 	var x1 = Math.floor((Math.random() * words.length) + 1);
 	var x2 = Math.floor((Math.random() * words.length) + 1);
-	generateCommercial(vocabulary[x],vocabulary[x2]);
+	generateCommercial(vocabulary[x1],vocabulary[x2]);
 	setInterval(function(){
 		x1 = Math.floor((Math.random() * words.length) + 1);		
 		x2 = Math.floor((Math.random() * words.length) + 1);		
