@@ -17,7 +17,7 @@ var CREDIT = null;
 
 function run(){
 	var vocabulary = {}
-	$.getJSON("data/words.json", function(json) {
+	$.getJSON("words.json", function(json) {
     	vocabulary = json;
 	});	
 	var index = 0;
