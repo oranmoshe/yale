@@ -35,6 +35,7 @@ $(document).ready(function(){
 });
 
 function generateCommercial(term){
+	//
 	$.getJSON('https://yale-oran-moshe.herokuapp.com/product/'+ term +'?callback=non', 
 	function(json) {
 		var image_url = "";
